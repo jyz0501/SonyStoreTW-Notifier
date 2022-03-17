@@ -25,7 +25,7 @@ const itemList = [
 
 function runRequest(item) {
     let options = {
-        url: `https://store.sony.com.tw/product/show/${item.id}`,
+        url: `https://store.sony.com.cn/product/show/${item.id}`,
         headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36'
         }
@@ -39,7 +39,7 @@ function runRequest(item) {
             return;
         }
 
-        if (body.includes('放入購物車', 0)) {
+        if (body.includes('放入购物车', 0)) {
             console.log(time, item.name, 'On stuck!!');
             bot.sendMessage(chatId, `${item.name} has stock`);
         } else {
