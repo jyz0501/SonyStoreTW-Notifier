@@ -3,8 +3,8 @@ const TelegramBot = require('node-telegram-bot-api');
 
 
 /* Telegram Bot Settings */
-const chatId = '';
-const token = '';
+const customerID = '';
+const access_token = '';
 const bot = new TelegramBot(token, {polling: false});
 
 /* Runtime Settings */
@@ -14,18 +14,18 @@ const timeBias = 30000;
 /* Watch Tower */
 const itemList = [
     {
-        name: 'SEL24F14GM',
-        id: 'ff8080816643644a0166661218cf10cd',
+        name: 'ilce_7c',
+        spec: '',
     },
     {
-        name: 'SEL100F28GM',
-        id: '8a818bb95a464b07015a49fab83a2ef6',
+        name: 'ilce_7m4',
+        spec: '',
     },
 ];
 
 function runRequest(item) {
     let options = {
-        url: `https://store.sony.com.cn/product/show/${item.id}`,
+        url: `https://www.sonystyle.com.cn/products/ilc/${item.name}/${item.spec}.html`,
         headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36'
         }
@@ -41,7 +41,7 @@ function runRequest(item) {
 
         if (body.includes('放入购物车', 0)) {
             console.log(time, item.name, 'On stuck!!');
-            bot.sendMessage(chatId, `${item.name} has stock`);
+            bot.sendMessage(customerID, `${item.name} has stock`);
         } else {
             console.log(time, item.name, 'Out of stuck!');
         }
